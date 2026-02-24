@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Dictionary — Delete Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f4f5f7;
+            color: #222;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand img {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #6b0026;
+        }
+
+        .lang-switch button {
+            border: none;
+            background: #eee;
+            padding: 8px 14px;
+            border-radius: 20px;
+            margin-left: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .lang-switch button.active {
+            background: #6b0026;
+            color: white;
+        }
+
+        h2 {
+            color: #6b0026;
+            margin-top: 32px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .back-btn {
+            background: #6b0026;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 15px;
+            cursor: pointer;
+            margin-bottom: 24px;
+        }
+
+        .back-btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 16px;
+                padding: 20px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .brand h1 {
+                font-size: 22px;
+            }
+
+            .brand img {
+                width: 48px;
+                height: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="brand">
+            <img src="icon-512.png" alt="My Dictionary Logo">
+            <h1>My Dictionary</h1>
+        </div>
+
+        <div class="lang-switch">
+            <button id="ruBtn" onclick="setLang('ru')">RU</button>
+            <button id="enBtn" onclick="setLang('en')">EN</button>
+        </div>
+    </header>
+
+    <button class="back-btn" id="backBtn" onclick="goBack()">Back to app</button>
+
+    <!-- EN -->
+    <div id="en">
+        <h2>How to delete your account</h2>
+
+        <h3>Step-by-step:</h3>
+        <ul>
+            <li>Open app</li>
+            <li>Go to Settings</li>
+            <li>Tap Delete account</li>
+        </ul>
+
+        <h3>Data deleted:</h3>
+        <ul>
+            <li>Email</li>
+            <li>Saved words</li>
+            <li>Card statistics</li>
+        </ul>
+
+        <h3>Deletion timeline:</h3>
+        <ul>
+            <li>Account marked immediately</li>
+            <li>Permanently deleted within 30 days</li>
+        </ul>
+    </div>
+
+    <!-- RU -->
+    <div id="ru" style="display:none;">
+        <h2>Как удалить аккаунт</h2>
+
+        <h3>Пошагово:</h3>
+        <ul>
+            <li>Откройте приложение</li>
+            <li>Перейдите в Настройки</li>
+            <li>Нажмите «Удалить аккаунт»</li>
+        </ul>
+
+        <h3>Удаляются данные:</h3>
+        <ul>
+            <li>Email</li>
+            <li>Сохранённые слова</li>
+            <li>Статистика карточек</li>
+        </ul>
+
+        <h3>Срок удаления:</h3>
+        <ul>
+            <li>Аккаунт помечается как удалённый сразу</li>
+            <li>Полное удаление происходит в течение 30 дней</li>
+        </ul>
+    </div>
+
+    <footer>
+        © 2026 My Dictionary
+    </footer>
+
+</div>
+
+<script>
+    const texts = {
+        ru: { back: "Назад в приложение" },
+        en: { back: "Back to app" }
+    };
+
+    function setLang(lang) {
+        document.getElementById('ru').style.display = lang === 'ru' ? 'block' : 'none';
+        document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+
+        document.getElementById('ruBtn').classList.toggle('active', lang === 'ru');
+        document.getElementById('enBtn').classList.toggle('active', lang === 'en');
+
+        document.getElementById('backBtn').innerText = texts[lang].back;
+
+        const newUrl = window.location.pathname + "?lang=" + lang;
+        window.history.replaceState(null, "", newUrl);
+    }
+
+    function goBack() {
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = "mydictionary://back";
+        }
+    }
+
+    function getLangFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get("lang");
+        if (lang === "ru" || lang === "en") return lang;
+        return "en";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const lang = getLangFromUrl();
+        setLang(lang);
+    });
+</script>
+
+</body>
+</html>
