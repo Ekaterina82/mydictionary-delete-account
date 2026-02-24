@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Dictionary — Delete Account</title>
+    <title>My Dictionary — Account Deletion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -38,12 +38,13 @@
         .brand img {
             width: 64px;
             height: 64px;
-            border-radius: 12px;
+            border-radius: 14px;
+            object-fit: cover;
         }
 
         .brand h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 26px;
             color: #6b0026;
         }
 
@@ -67,23 +68,15 @@
             margin-top: 32px;
         }
 
-        ul {
+        ul, ol {
             padding-left: 20px;
         }
 
-        .back-btn {
-            background: #6b0026;
-            color: white;
-            border: none;
-            padding: 12px 18px;
+        .note {
+            background: #f1f1f1;
+            padding: 16px;
             border-radius: 12px;
-            font-size: 15px;
-            cursor: pointer;
-            margin-bottom: 24px;
-        }
-
-        .back-btn:hover {
-            opacity: 0.9;
+            margin: 20px 0;
         }
 
         footer {
@@ -124,7 +117,7 @@
 
     <header>
         <div class="brand">
-            <img src="icon-512.png" alt="My Dictionary Logo">
+            <img src="./icon-512.png" alt="My Dictionary Logo">
             <h1>My Dictionary</h1>
         </div>
 
@@ -134,56 +127,82 @@
         </div>
     </header>
 
-    <button class="back-btn" id="backBtn" onclick="goBack()">Back to app</button>
-
     <!-- EN -->
     <div id="en">
-        <h2>How to delete your account</h2>
+        <h2>Account and Data Deletion</h2>
 
-        <h3>Step-by-step:</h3>
+        <div class="note">
+            Account deletion is performed directly inside the My Dictionary mobile application.
+            This page provides information about the deletion process in accordance with Google Play requirements.
+        </div>
+
+        <h3>How to delete your account</h3>
+        <ol>
+            <li>Open the My Dictionary mobile application.</li>
+            <li>Go to <strong>Settings</strong>.</li>
+            <li>Select <strong>Delete Account</strong>.</li>
+            <li>Confirm your deletion request.</li>
+        </ol>
+
+        <h3>Data that will be deleted</h3>
         <ul>
-            <li>Open app</li>
-            <li>Go to Settings</li>
-            <li>Tap Delete account</li>
+            <li>Email address associated with the account</li>
+            <li>User account identifier (User ID)</li>
+            <li>Saved words and translations</li>
+            <li>Flashcard learning statistics</li>
+            <li>Authentication and refresh tokens</li>
         </ul>
 
-        <h3>Data deleted:</h3>
+        <h3>Deletion timeline</h3>
         <ul>
-            <li>Email</li>
-            <li>Saved words</li>
-            <li>Card statistics</li>
+            <li>The account is marked as deleted immediately.</li>
+            <li>All associated personal data is permanently deleted from our servers within <strong>30 days</strong>.</li>
         </ul>
 
-        <h3>Deletion timeline:</h3>
-        <ul>
-            <li>Account marked immediately</li>
-            <li>Permanently deleted within 30 days</li>
-        </ul>
+        <h3>Analytics and crash reports</h3>
+        <p>
+            Anonymous analytics data and crash reports collected through Firebase services
+            may be retained in aggregated and non-identifiable form to improve application stability and performance.
+        </p>
     </div>
 
     <!-- RU -->
     <div id="ru" style="display:none;">
-        <h2>Как удалить аккаунт</h2>
+        <h2>Удаление аккаунта и данных</h2>
 
-        <h3>Пошагово:</h3>
+        <div class="note">
+            Удаление аккаунта выполняется непосредственно в мобильном приложении My Dictionary.
+            Эта страница содержит описание процесса удаления в соответствии с требованиями Google Play.
+        </div>
+
+        <h3>Как удалить аккаунт</h3>
+        <ol>
+            <li>Откройте мобильное приложение My Dictionary.</li>
+            <li>Перейдите в <strong>Настройки</strong>.</li>
+            <li>Нажмите <strong>«Удалить аккаунт»</strong>.</li>
+            <li>Подтвердите удаление.</li>
+        </ol>
+
+        <h3>Удаляются следующие данные</h3>
         <ul>
-            <li>Откройте приложение</li>
-            <li>Перейдите в Настройки</li>
-            <li>Нажмите «Удалить аккаунт»</li>
+            <li>Email, связанный с аккаунтом</li>
+            <li>Идентификатор пользователя (User ID)</li>
+            <li>Сохранённые слова и переводы</li>
+            <li>Статистика работы с карточками</li>
+            <li>Токены авторизации и обновления</li>
         </ul>
 
-        <h3>Удаляются данные:</h3>
+        <h3>Срок удаления</h3>
         <ul>
-            <li>Email</li>
-            <li>Сохранённые слова</li>
-            <li>Статистика карточек</li>
+            <li>Аккаунт помечается как удалённый сразу после запроса.</li>
+            <li>Полное удаление всех персональных данных происходит в течение <strong>30 дней</strong>.</li>
         </ul>
 
-        <h3>Срок удаления:</h3>
-        <ul>
-            <li>Аккаунт помечается как удалённый сразу</li>
-            <li>Полное удаление происходит в течение 30 дней</li>
-        </ul>
+        <h3>Аналитика и отчёты об ошибках</h3>
+        <p>
+            Обезличенные данные аналитики и отчёты об ошибках, собираемые через Firebase,
+            могут храниться в агрегированном и неидентифицируемом виде для улучшения стабильности приложения.
+        </p>
     </div>
 
     <footer>
@@ -193,42 +212,16 @@
 </div>
 
 <script>
-    const texts = {
-        ru: { back: "Назад в приложение" },
-        en: { back: "Back to app" }
-    };
-
     function setLang(lang) {
         document.getElementById('ru').style.display = lang === 'ru' ? 'block' : 'none';
         document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
 
         document.getElementById('ruBtn').classList.toggle('active', lang === 'ru');
         document.getElementById('enBtn').classList.toggle('active', lang === 'en');
-
-        document.getElementById('backBtn').innerText = texts[lang].back;
-
-        const newUrl = window.location.pathname + "?lang=" + lang;
-        window.history.replaceState(null, "", newUrl);
-    }
-
-    function goBack() {
-        if (window.history.length > 1) {
-            window.history.back();
-        } else {
-            window.location.href = "mydictionary://back";
-        }
-    }
-
-    function getLangFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        const lang = params.get("lang");
-        if (lang === "ru" || lang === "en") return lang;
-        return "en";
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        const lang = getLangFromUrl();
-        setLang(lang);
+        setLang('en');
     });
 </script>
 
